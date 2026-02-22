@@ -2,21 +2,44 @@
 
 [![Agent Skills Standard](https://img.shields.io/badge/Agent%20Skills-Standard-blue)](https://agentskills.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-[![Skills: 220+](https://img.shields.io/badge/Skills-220%2B-orange)](skills/)
+[![Skills: 245+](https://img.shields.io/badge/Skills-245%2B-orange)](skills/)
+[![Categories: 21](https://img.shields.io/badge/Categories-21-purple)](skills/)
+[![OpenSkills Compatible](https://img.shields.io/badge/OpenSkills-Compatible-brightgreen)](https://github.com/numman-ali/n-skills)
+[![SKILL.md Standard](https://img.shields.io/badge/SKILL.md-Anthropic%20Standard-blueviolet)](https://github.com/anthropics/skills)
+[![Last Updated](https://img.shields.io/badge/Updated-Feb%202026-red)]()
 
-Repositorio de **220+ skills reutilizables para agentes IA** (GitHub Copilot, Claude Code, Cursor, Codex, Cline, Windsurf, etc.).
+Repositorio de **245+ skills reutilizables para agentes IA** — la colección más completa en español para potenciar tus proyectos con GitHub Copilot, Claude Code, Cursor, Codex CLI/Desktop, Cline, Windsurf, Aider, Goose y cualquier herramienta que soporte el estándar SKILL.md.
 
-Cada skill es un conjunto de conocimiento especializado que el agente detecta automáticamente y aplica cuando es relevante para la tarea.
+> **Formato SKILL.md** — Estándar de Anthropic (diciembre 2025), adoptado por OpenAI, Hugging Face y la industria. Arquitectura de *divulgación progresiva*: el agente carga solo metadatos al inicio (~docenas de tokens por skill), con contenido completo cargado dinámicamente cuando es relevante.
+
+---
+
+## 🌟 Novedades Febrero 2026
+
+| Fecha | Evento | Impacto |
+|-------|--------|---------|
+| 3 feb 2026 | **Claude Opus 4.6** | Menor tasa de rechazo, ventana de contexto para codebases medianos, mejor coherencia en refactorizaciones |
+| 2 feb 2026 | **Codex Desktop App** | Arquitectura multi-agente: tests + refactoring + docs en paralelo |
+| 5 feb 2026 | **Voxtral Transcribe 2** | Transcripción open-source local, <200ms, 13 idiomas |
+| 13 feb 2026 | **Retiro GPT-4o** | Migración obligatoria a GPT-5.2 (Instant/Thinking/Prism) |
+| Feb 2026 | **7 nuevas categorías** | +37 skills: HuggingFace, OpenAI, Block/Goose, OpenClaw, Testing, Orchestration, Productivity |
 
 ---
 
 ## 🎯 Para qué sirve este repositorio
 
 Cuando empiezas un proyecto nuevo, el agente puede buscar en este repo y encontrar las skills que necesita:
-- **¿Estás haciendo una web?** → Carga `frontend-design`, `web-design-guidelines`, `seo-content`
-- **¿Estás haciendo un agente IA?** → Carga `prompt-engineering`, `memory-management`, `skill-creator`
-- **¿Estás haciendo una API?** → Carga `api-design`, `git-conventional-commits`, `testing-strategy`
-- **¿Necesitas contenido?** → Carga las skills de PrivaLex (`privalex-voice-and-tone`, etc.)
+
+| Tu proyecto | Skills recomendadas |
+|------------|---------------------|
+| **Web app** | `frontend-design`, `web-design-guidelines`, `seo-content`, `react-best-practices` |
+| **Agente IA** | `prompt-engineering`, `memory-management`, `skill-creator`, `multi-agent-coordinator` |
+| **API** | `api-design`, `git-conventional-commits`, `systematic-debugging`, `tdd-bdd-patterns` |
+| **ML/AI** | `hf-trainer`, `hf-datasets`, `hf-evaluation`, `lora-finetuning` |
+| **DevOps** | `goose-workflows`, `goose-release-manager`, `github-cli`, `vercel-platform` |
+| **Seguridad** | `security-audit`, `goose-security-audit`, `openclaw-security`, `testing-anti-patterns` |
+| **Multi-agente** | `multi-agent-coordinator`, `agent-specialization`, `parallel-execution` |
+| **Contenido** | `copywriting-persuasive`, `humanizer`, `marketing-mode`, PrivaLex skills |
 
 ---
 
@@ -38,7 +61,16 @@ skills/
 ├── 12-vercel-labs/              # 5 skills oficiales de Vercel Labs
 ├── 13-anthropic/                # 16 skills oficiales de Anthropic
 ├── 14-social-comms/             # Twitter/X, Slack, Discord, LinkedIn, Reddit
-└── _templates/                  # Plantillas para crear nuevas skills
+├── 15-huggingface/          🆕  # 5 skills oficiales de Hugging Face (ML/AI)
+├── 16-openai-codex/         🆕  # 6 skills del ecosistema OpenAI Codex
+├── 17-block-goose/          🆕  # 5 skills enterprise de Block/Goose
+├── 18-openclaw/             🆕  # 6 skills de la comunidad OpenClaw
+├── 19-testing-quality/      🆕  # 5 skills de testing y calidad de código
+├── 20-orchestration/        🆕  # 5 skills de orquestación multi-agente
+├── 21-productivity/         🆕  # 5 skills de productividad y herramientas
+├── _templates/                  # Plantillas para crear nuevas skills
+├── AGENTS.md                    # Compatibilidad cross-platform (Copilot, Cursor, etc.)
+└── commands/                    # Comandos slash para agentes
 ```
 
 ---
@@ -46,6 +78,7 @@ skills/
 ## 🚀 Cómo usar este repositorio
 
 ### Opción 1: Instalación global (recomendado)
+
 Las skills están disponibles en todos tus proyectos:
 
 ```bash
@@ -57,28 +90,83 @@ cp -r skills/* ~/.claude/skills/
 
 # Para Codex
 cp -r skills/* ~/.codex/skills/
+
+# Para GitHub Copilot (lee AGENTS.md automáticamente)
+cp AGENTS.md ~/tu-proyecto/.github/copilot-instructions.md
 ```
 
-### Opción 2: Instalación por proyecto
-Copia solo las skills que necesitas en tu proyecto:
+### Opción 2: Plugin de Claude Code
+
+```bash
+# Registrar marketplace
+/plugin marketplace add garri333/Skills
+
+# Instalar skills individuales
+/plugin install prompt-engineering@garri333/Skills
+/plugin install hf-trainer@garri333/Skills
+```
+
+### Opción 3: OpenSkills (universal — todos los agentes)
+
+```bash
+# Instalar OpenSkills CLI
+npm i -g openskills
+
+# Instalar skills desde este repo
+openskills install garri333/Skills
+
+# Sincronizar con todos tus agentes
+openskills sync
+```
+
+### Opción 4: Usando npx (skills.sh ecosystem)
+
+```bash
+npx skills add garri333/Skills/prompt-engineering
+npx skills add garri333/Skills/hf-trainer
+npx skills add garri333/Skills/multi-agent-coordinator
+```
+
+### Opción 5: Instalación por proyecto
 
 ```bash
 mkdir -p .cursor/skills
 cp -r skills/04-ai-agents/prompt-engineering .cursor/skills/
-cp -r skills/02-frontend-design/frontend-design .cursor/skills/
+cp -r skills/15-huggingface/hf-trainer .cursor/skills/
+cp -r skills/20-orchestration/multi-agent-coordinator .cursor/skills/
 ```
 
-### Opción 3: Usando npx (skills.sh ecosystem)
+### Opción 6: Codex $skill-installer
+
 ```bash
-npx skills add garri333/skills/prompt-engineering
-npx skills add garri333/skills/frontend-design
+# Skills curados
+$skill-installer prompt-engineering
+
+# Skills experimentales
+$skill-installer install hf-trainer from garri333/Skills/skills/15-huggingface
 ```
 
 ---
 
-## 📋 Catálogo de Skills
+## 🔗 Compatibilidad de Plataformas
 
-### 01. Escritura y Contenido
+| Agente | Método de integración | Estado |
+|--------|----------------------|--------|
+| **Claude Code** | `/plugin install` o copia a `~/.claude/skills/` | ✅ Nativo |
+| **GitHub Copilot** | Lee `AGENTS.md` automáticamente | ✅ Nativo |
+| **Cursor** | Copia a `~/.cursor/skills/` | ✅ Nativo |
+| **Codex CLI/Desktop** | `$skill-installer` o copia a `~/.codex/skills/` | ✅ Nativo |
+| **Cline** | OpenSkills → `AGENTS.md` | ✅ Via OpenSkills |
+| **Windsurf** | OpenSkills → `AGENTS.md` | ✅ Via OpenSkills |
+| **Aider** | Lee `AGENTS.md` | ✅ Via AGENTS.md |
+| **Goose (Block)** | Lee `SKILL.md` estándar | ✅ Nativo |
+| **Gemini CLI** | `gemini-extension.json` (planificado) | 🔜 Próximo |
+
+---
+
+## 📋 Catálogo Completo de Skills
+
+### 01. Escritura y Contenido (6 skills)
 
 | Skill | Descripción | Cuándo usar |
 |-------|-------------|-------------|
@@ -89,7 +177,7 @@ npx skills add garri333/skills/frontend-design
 | `resume-optimizer` | CV con scoring ATS y exportación PDF/DOCX | Crear o mejorar currículums |
 | `seo-content` | Guía completa de SEO y estructura editorial | Crear blog posts, landing pages, contenido web |
 
-### 02. Frontend y Diseño
+### 02. Frontend y Diseño (8 skills)
 
 | Skill | Descripción | Cuándo usar |
 |-------|-------------|-------------|
@@ -102,7 +190,7 @@ npx skills add garri333/skills/frontend-design
 | `uiux-pro` | Inteligencia de diseño UI/UX para interfaces pulidas | Proyectos con React, Vue, Svelte, Tailwind |
 | `web-design-guidelines` | Guía de mejores prácticas para interfaces web | Auditar UI, accessibility, UX |
 
-### 03. Backend y APIs
+### 03. Backend y APIs (4 skills)
 
 | Skill | Descripción | Cuándo usar |
 |-------|-------------|-------------|
@@ -111,7 +199,7 @@ npx skills add garri333/skills/frontend-design
 | `excel-data` | Leer, escribir y manipular archivos Excel | Trabajar con datos en Excel |
 | `pdf-builder` | Generar PDFs profesionales desde Markdown | Crear documentos, reports, NDAs |
 
-### 04. Agentes IA
+### 04. Agentes IA (6 skills)
 
 | Skill | Descripción | Cuándo usar |
 |-------|-------------|-------------|
@@ -122,7 +210,7 @@ npx skills add garri333/skills/frontend-design
 | `deep-research-agent` | Investigación compleja multi-step | Tareas de investigación profunda |
 | `coding-agent` | Control de agentes de coding (Claude Code, Codex) | Programar mediante subagentes |
 
-### 05. DevOps y Git
+### 05. DevOps y Git (4 skills)
 
 | Skill | Descripción | Cuándo usar |
 |-------|-------------|-------------|
@@ -131,7 +219,7 @@ npx skills add garri333/skills/frontend-design
 | `mcp-porter` | Descubrir, instalar y llamar servidores MCP | Gestionar el ecosistema MCP |
 | `vercel-platform` | Deploy y gestión de proyectos en Vercel | Deployar, dominios, variables de entorno |
 
-### 06. Datos y Análisis
+### 06. Datos y Análisis (5 skills)
 
 | Skill | Descripción | Cuándo usar |
 |-------|-------------|-------------|
@@ -141,14 +229,14 @@ npx skills add garri333/skills/frontend-design
 | `ga4-analytics` | Query Google Analytics 4 via API | Analizar métricas web |
 | `statistical-analysis` | Análisis estadístico y metodología | Análisis de datos, informes |
 
-### 07. Seguridad y Compliance
+### 07. Seguridad y Compliance (2 skills)
 
 | Skill | Descripción | Cuándo usar |
 |-------|-------------|-------------|
 | `security-audit` | Auditoría de seguridad completa | Revisar configuraciones de seguridad |
 | `security-monitor` | Monitorización de seguridad en tiempo real | Detectar intrusiones y anomalías |
 
-### 08. Automatización
+### 08. Automatización (12 skills)
 
 | Skill | Descripción | Cuándo usar |
 |-------|-------------|-------------|
@@ -165,7 +253,7 @@ npx skills add garri333/skills/frontend-design
 | `whatsapp-messaging` | Enviar mensajes WhatsApp via CLI | Notificaciones, mensajes automáticos |
 | `youtube-downloader` | Descargar videos con yt-dlp | Descargar contenido de YouTube y más |
 
-### 09. Research e Investigación
+### 09. Research e Investigación (7 skills)
 
 | Skill | Descripción | Cuándo usar |
 |-------|-------------|-------------|
@@ -177,11 +265,22 @@ npx skills add garri333/skills/frontend-design
 | `web-search-brave` | Búsqueda web via Brave Search API | Buscar documentación, hechos, noticias |
 | `web-search-exa` | Búsqueda semántica con Exa AI | Encontrar código, papers, info empresa |
 
-### 11. Scientific (K-Dense-AI — 117 skills)
+### 10. PrivaLex Partners (8 skills)
+
+| Skill | Descripción | Cuándo usar |
+|-------|-------------|-------------|
+| `privalex-product` | Positioning, servicios y proof points de PrivaLex | Cualquier contenido que describe PrivaLex |
+| `privalex-voice-and-tone` | Voz, tono y guardarraíles anti-fluff | TODO el contenido de PrivaLex |
+| `compliance-frameworks` | Base de conocimiento: ISO 27001, NIS2, GDPR, etc. | Contenido técnico de compliance |
+| `seo-guidelines` | SEO específico para contenido PrivaLex | Blog posts y contenido web |
+| `target-personas` | Perfiles de CISO, CTO, DPO, Founder | Personalizar contenido por audiencia |
+| `content-formats` | Templates: blog, LinkedIn, newsletter, case study | Generar formatos específicos |
+| `competitive-landscape` | Posicionamiento vs Vanta, ECIJA, etc. | Contenido comparativo |
+| `examples-hall-of-fame` | Ejemplos aprobados de contenido PrivaLex | Referencia de calidad y tono |
+
+### 11. Scientific — K-Dense-AI (117 skills)
 
 > **Fuente:** [K-Dense-AI/claude-scientific-skills](https://github.com/K-Dense-AI/claude-scientific-skills)
-
-Skills especializadas para investigación científica, bioinformática, química, física y ciencia de datos.
 
 | Dominio | Skills destacadas |
 |---------|-------------------|
@@ -198,7 +297,7 @@ Skills especializadas para investigación científica, bioinformática, química
 
 [→ Ver todas las 117 skills científicas](skills/11-scientific/)
 
-### 12. Vercel Labs (Oficial — 5 skills)
+### 12. Vercel Labs — Oficial (5 skills)
 
 > **Fuente:** [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)
 
@@ -210,9 +309,9 @@ Skills especializadas para investigación científica, bioinformática, química
 | `vercel-deploy-claimable` | Deployments reclamables en Vercel |
 | `web-design-guidelines` | Guías de diseño web oficiales de Vercel |
 
-### 13. Anthropic (Oficial — 16 skills)
+### 13. Anthropic — Oficial (16 skills)
 
-> **Fuente:** [anthropics/skills](https://github.com/anthropics/skills)
+> **Fuente:** [anthropics/skills](https://github.com/anthropics/skills) — 14,300+ ⭐ GitHub
 
 | Skill | Descripción |
 |-------|-------------|
@@ -233,7 +332,7 @@ Skills especializadas para investigación científica, bioinformática, química
 | `webapp-testing` | Testing de aplicaciones web |
 | `xlsx` | Generación de hojas de cálculo Excel |
 
-### 14. Social & Comunicaciones
+### 14. Social & Comunicaciones (5 skills)
 
 | Skill | Descripción | Cuándo usar |
 |-------|-------------|-------------|
@@ -243,18 +342,91 @@ Skills especializadas para investigación científica, bioinformática, química
 | `reddit` | Reddit lectura via JSON endpoints y PRAW | Monitorear hilos y subreddits |
 | `slack` | Slack SDK, webhooks, file uploads, eventos | Notificaciones y bots de Slack |
 
-### 10. PrivaLex Partners
+### 15. 🆕 Hugging Face — Oficial (5 skills)
+
+> **Fuente:** [huggingface/skills](https://github.com/huggingface/skills) — Skills especializadas en ML/AI. Compatible con Claude Code, Codex, Gemini CLI, Cursor.
 
 | Skill | Descripción | Cuándo usar |
 |-------|-------------|-------------|
-| `privalex-product` | Positioning, servicios y proof points de PrivaLex | Cualquier contenido que describe PrivaLex |
-| `privalex-voice-and-tone` | Voz, tono y guardarraíles anti-fluff | TODO el contenido de PrivaLex |
-| `compliance-frameworks` | Base de conocimiento: ISO 27001, NIS2, GDPR, etc. | Contenido técnico de compliance |
-| `seo-guidelines` | SEO específico para contenido PrivaLex | Blog posts y contenido web |
-| `target-personas` | Perfiles de CISO, CTO, DPO, Founder | Personalizar contenido por audiencia |
-| `content-formats` | Templates: blog, LinkedIn, newsletter, case study | Generar formatos específicos |
-| `competitive-landscape` | Posicionamiento vs Vanta, ECIJA, etc. | Contenido comparativo |
-| `examples-hall-of-fame` | Ejemplos aprobados de contenido PrivaLex | Referencia de calidad y tono |
+| `hf-cli` | CLI de Hugging Face: auth, repos, upload/download | Gestionar modelos y datasets en HF Hub |
+| `hf-datasets` | Crear y gestionar datasets en HF Hub | Preparar datos para entrenamiento ML |
+| `hf-trainer` | Entrenamiento de modelos con Trainer API | Fine-tuning, LoRA/QLoRA, distributed training |
+| `hf-evaluation` | Evaluación estandarizada de modelos | Benchmarks, métricas, comparación de modelos |
+| `hf-jobs` | Orquestación de jobs en infraestructura HF | Inference Endpoints, AutoTrain, Spaces |
+
+### 16. 🆕 OpenAI Codex (6 skills)
+
+> **Fuente:** [openai/skills](https://github.com/openai/skills) — Skills del ecosistema Codex (CLI, IDE, Desktop App). Tres niveles: System, Curated, Experimental.
+
+| Skill | Descripción | Cuándo usar |
+|-------|-------------|-------------|
+| `codex-cli` | Dominio de Codex CLI con GPT-5.2 | Generación de código, scaffolding, edición |
+| `codex-multi-agent` | Arquitectura multi-agente (Desktop App Feb 2026) | Tests + refactoring + docs en paralelo |
+| `codex-skill-installer` | `$skill-installer` y `$skill-creator` | Instalar, gestionar y crear skills para Codex |
+| `codex-pr-creator` | Creación automática de PRs con validación CI | PRs con conventional commits y ticket linking |
+| `codex-react-linter` | React Code Fix & Linter (242K ⭐ MCP Market) | Formateo, linting, calidad React |
+| `codex-prompt-enhancer` | Prompt Finder & Enhancer (144K accesos) | Optimizar prompts con contexto de proyecto |
+
+### 17. 🆕 Block/Goose — Enterprise (5 skills)
+
+> **Fuente:** [block/agent-skills](https://github.com/block/agent-skills) — Skills enterprise de Block (ex-Square). Compatible con Goose, Claude Desktop, estándar SKILL.md.
+
+| Skill | Descripción | Cuándo usar |
+|-------|-------------|-------------|
+| `goose-workflows` | Workflows repetibles: deploy, release, migración | Pipelines de despliegue y migración |
+| `goose-incident-response` | Respuesta a incidentes (P0-P4), RCA, post-mortem | Gestión de incidentes en producción |
+| `goose-code-review` | Code review enterprise multi-dimensión | Revisar PRs con criterios de calidad |
+| `goose-security-audit` | Auditoría OWASP, CVE, SOC 2, ISO 27001, PCI-DSS | Auditorías de seguridad y compliance |
+| `goose-release-manager` | Releases end-to-end: semver, changelog, publish | Publicar releases profesionales |
+
+### 18. 🆕 OpenClaw — Comunidad (6 skills)
+
+> **Fuente:** [VoltAgent/awesome-openclaw-skills](https://github.com/VoltAgent/awesome-openclaw-skills) — Ecosistema OpenClaw (actualizado 7 feb 2026).
+
+| Skill | Descripción | Cuándo usar |
+|-------|-------------|-------------|
+| `openclaw-memory` | Triple memoria: LanceDB + Git-Notes + File-based | Persistencia de contexto entre sesiones |
+| `openclaw-security` | Seguridad de agentes: inyección, malware, audit | Proteger agentes autónomos |
+| `openclaw-self-reflect` | Auto-mejora mediante análisis de conversaciones | Agentes que aprenden de sus errores |
+| `openclaw-project-management` | Gestión de proyectos con task-observer | Planificación, sprints, tracking |
+| `openclaw-messaging` | Mensajería multi-plataforma (Slack, Discord, etc.) | Integrar con plataformas de mensajería |
+| `openclaw-reasoning` | Razonamiento avanzado (Equilibrium-Native) | Problemas complejos, decisiones difíciles |
+
+### 19. 🆕 Testing y Calidad (5 skills)
+
+> Skills de testing y calidad de código basadas en mejores prácticas de Anthropic, MCP Market y la comunidad.
+
+| Skill | Descripción | Cuándo usar |
+|-------|-------------|-------------|
+| `webapp-testing-playwright` | Testing E2E con Playwright multi-browser | Tests de aplicaciones web completas |
+| `systematic-debugging` | Metodología estructurada de debugging | Diagnosticar y resolver bugs |
+| `testing-anti-patterns` | Anti-patrones de testing y cómo evitarlos | Mejorar calidad de test suites |
+| `code-quality-audit` | Auditoría de salud del codebase | Identificar deuda técnica |
+| `tdd-bdd-patterns` | Patrones TDD y BDD con ejemplos prácticos | Desarrollo dirigido por tests |
+
+### 20. 🆕 Orquestación Multi-Agente (5 skills)
+
+> Patrones de orquestación inspirados en Codex Desktop App, n-skills orchestration y la comunidad.
+
+| Skill | Descripción | Cuándo usar |
+|-------|-------------|-------------|
+| `multi-agent-coordinator` | Coordinador central multi-agente | Orquestar múltiples agentes |
+| `agent-specialization` | Configurar agentes especializados por dominio | Frontend, Backend, Security, DevOps agents |
+| `task-decomposition` | Descomponer tareas complejas en subtareas | Planificación de trabajo complejo |
+| `parallel-execution` | Ejecución paralela de tareas de agentes | Máxima productividad multi-agente |
+| `open-source-maintainer` | Mantenimiento end-to-end de repos GitHub | Issues, PRs, releases, comunidad |
+
+### 21. 🆕 Productividad y Herramientas (5 skills)
+
+> Skills de productividad para el desarrollador moderno, basadas en tendencias de MCP Market y SkillsMP.
+
+| Skill | Descripción | Cuándo usar |
+|-------|-------------|-------------|
+| `skill-writer` | Meta-skill que crea otras skills | Automatizar creación de SKILL.md |
+| `codebase-health-reporter` | Reportes automáticos de salud del codebase | Auditorías de deuda técnica |
+| `n8n-automation` | Integración con n8n workflows | Automatización de flujos de trabajo |
+| `voxtral-transcription` | Transcripción Voxtral 2 (open-source, local) | Voz a texto, transcripción de reuniones |
+| `prompt-finder-enhancer` | Biblioteca de 140K+ prompts + optimización | Encontrar y mejorar prompts |
 
 ---
 
@@ -283,6 +455,17 @@ license: MIT
 ---
 ```
 
+### Criterios de calidad (basados en mejores prácticas de la industria)
+
+| Criterio | Requisito |
+|----------|-----------|
+| **Enfoque** | Cada skill debe hacer UN solo trabajo bien |
+| **Instrucciones** | Pasos imperativos con inputs y outputs explícitos |
+| **Alcance** | Descripción clara de cuándo activar la skill |
+| **Límites** | Casos de uso NO soportados claramente definidos |
+| **Ejemplos** | Al menos 2-3 ejemplos de uso práctico |
+| **Scripts** | Preferir instrucciones sobre scripts, salvo que se requiera comportamiento determinista |
+
 ---
 
 ## 📊 Estadísticas
@@ -294,20 +477,62 @@ license: MIT
 | 12 Vercel Labs | 5 | Vercel Oficial |
 | 13 Anthropic | 16 | Anthropic Oficial |
 | 14 Social/Comms | 5 | Clawdbot-inspired |
-| **Total** | **198+** | **Multi-fuente** |
+| 15 Hugging Face 🆕 | 5 | HuggingFace Oficial |
+| 16 OpenAI Codex 🆕 | 6 | OpenAI Oficial |
+| 17 Block/Goose 🆕 | 5 | Block Enterprise |
+| 18 OpenClaw 🆕 | 6 | OpenClaw Community |
+| 19 Testing/Quality 🆕 | 5 | Multi-fuente |
+| 20 Orchestration 🆕 | 5 | Multi-fuente |
+| 21 Productivity 🆕 | 5 | Multi-fuente |
+| **Total** | **245+** | **Multi-fuente** |
 
-- Categorías: 14
-- Compatible con: GitHub Copilot, Claude Code, Cursor, Codex, Cline, Windsurf
-- Fuentes: skills.sh, K-Dense-AI, Vercel Labs, Anthropic, clawdbotskills.org, Privalex custom
+- **Categorías:** 21
+- **Compatible con:** GitHub Copilot, Claude Code, Cursor, Codex CLI/Desktop, Cline, Windsurf, Aider, Goose
+- **Fuentes:** anthropics/skills, openai/skills, huggingface/skills, block/agent-skills, VoltAgent/awesome-openclaw-skills, K-Dense-AI, vercel-labs, skills.sh, clawdbotskills.org, MCP Market, SkillsMP, n-skills
+
+---
+
+## 🔍 Dónde descubrir más skills
+
+| Fuente | Skills | URL | Frecuencia recomendada |
+|--------|--------|-----|------------------------|
+| **anthropics/skills** | Oficiales | [github.com/anthropics/skills](https://github.com/anthropics/skills) | Diaria |
+| **openai/skills** | Oficiales | [github.com/openai/skills](https://github.com/openai/skills) | Diaria |
+| **huggingface/skills** | ML/AI | [github.com/huggingface/skills](https://github.com/huggingface/skills) | Semanal |
+| **SkillsMP** | 66,541+ | [skillsmp.com](https://skillsmp.com) | Semanal |
+| **MCP Market** | 31,000+ | [mcpmarket.com](https://mcpmarket.com) | Semanal |
+| **skills.sh** | Directorio | [skills.sh](https://skills.sh) | Semanal |
+| **Skills Directory** | 3,514+ verificadas | [skillsdirectory.com](https://skillsdirectory.com) | Mensual |
+| **Block Agent Skills** | Enterprise | [block.github.io/goose/skills](https://block.github.io/goose/skills) | Mensual |
+| **n-skills** | Curadas | [github.com/numman-ali/n-skills](https://github.com/numman-ali/n-skills) | Mensual |
+| **Awesome Claude Skills** | Curadas | [awesomeclaude.ai](https://awesomeclaude.ai) | Mensual |
+| **r/ClaudeAI** | Comunidad | [reddit.com/r/ClaudeAI](https://reddit.com/r/ClaudeAI) | Diaria |
+| **r/ClaudeCode** | Técnico | [reddit.com/r/ClaudeCode](https://reddit.com/r/ClaudeCode) | Diaria |
 
 ---
 
 ## 🤝 Créditos y Fuentes
 
-- [K-Dense-AI/claude-scientific-skills](https://github.com/K-Dense-AI/claude-scientific-skills) — 117 skills científicas
+### Repositorios oficiales
+- [anthropics/skills](https://github.com/anthropics/skills) — 14,300+ ⭐ Skills oficiales de Anthropic (estándar SKILL.md)
+- [openai/skills](https://github.com/openai/skills) — Skills oficiales de OpenAI para Codex
+- [huggingface/skills](https://github.com/huggingface/skills) — Skills de ML/AI de Hugging Face
 - [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) — Skills oficiales de Vercel
-- [anthropics/skills](https://github.com/anthropics/skills) — Skills oficiales de Anthropic
-- [skills.sh](https://skills.sh) — Directorio de agent skills
+
+### Repositorios empresariales y comunitarios
+- [block/agent-skills](https://github.com/block/agent-skills) — Skills enterprise de Block/Goose
+- [VoltAgent/awesome-openclaw-skills](https://github.com/VoltAgent/awesome-openclaw-skills) — Ecosistema OpenClaw
+- [K-Dense-AI/claude-scientific-skills](https://github.com/K-Dense-AI/claude-scientific-skills) — 117 skills científicas
+- [numman-ali/n-skills](https://github.com/numman-ali/n-skills) — Skills curadas + OpenSkills
+- [travisvn/awesome-claude-skills](https://github.com/travisvn/awesome-claude-skills) — Awesome list curada
+- [ComposioHQ/awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills) — Integraciones enterprise
+- [heilcheng/awesome-agent-skills](https://github.com/heilcheng/awesome-agent-skills) — Recursos LangChain
+
+### Marketplaces y directorios
+- [SkillsMP](https://skillsmp.com) — 66,541+ skills indexadas
+- [MCP Market](https://mcpmarket.com) — 31,000+ skills con leaderboards
+- [skills.sh](https://skills.sh) — Directorio con leaderboard de instalaciones
+- [Skills Directory](https://skillsdirectory.com) — 3,514+ skills verificadas
 - [clawdbotskills.org](https://clawdbotskills.org) — Marketplace de skills
 
 ---
@@ -316,9 +541,14 @@ license: MIT
 
 1. Fork el repositorio
 2. Crea tu skill siguiendo la plantilla en `_templates/`
-3. Añádela en la categoría correcta
-4. Actualiza este README
-5. Pull Request
+3. Asegúrate de cumplir los [criterios de calidad](#criterios-de-calidad-basados-en-mejores-prácticas-de-la-industria)
+4. Añádela en la categoría correcta
+5. Actualiza este README
+6. Pull Request
+
+```
+fork → branch feature → SKILL.md validado → pull request → merge
+```
 
 ---
 
@@ -330,4 +560,6 @@ Skills individuales pueden tener sus propias licencias (ver frontmatter de cada 
 
 ---
 
-*Skills ecosystem powered by [skills.sh](https://skills.sh/) · Compatible con el [Agent Skills Standard](https://agentskills.io/)*
+*Skills ecosystem powered by [skills.sh](https://skills.sh/) · Compatible con el [Agent Skills Standard](https://agentskills.io/) · Formato [SKILL.md](https://github.com/anthropics/skills) de Anthropic*
+
+*Última actualización: Febrero 2026 · [garri333](https://github.com/garri333)*
